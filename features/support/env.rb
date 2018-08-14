@@ -15,6 +15,10 @@ Capybara.default_max_wait_time = 7
 rendered_config = ERB.new(File.read('config/config.json')).result binding
 $config = JSON.parse(rendered_config)
 
+#create results folder if it is not present
+directory_name = "results"
+Dir.mkdir(directory_name) unless File.exists?(directory_name)
+
 $downloads_path = if ENV['TEST_ENV_NUMBER'].nil?
                     File.join(Dir.pwd, 'temp_downloads', '1')
                   else
